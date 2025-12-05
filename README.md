@@ -13,9 +13,9 @@ Un mini programme complet:
 mon_projet/
 ├── backend
 │   ├── modules
-│   │   └── 
+│   │   └── df_tools.py
 │   ├── data
-│   │   └── 
+│   │   └── quotes_db.csv
 │   └── main.py
 ├── frontend
 │   ├── app.py
@@ -26,6 +26,11 @@ mon_projet/
 ├── .venv
 └── .gitignore
 ```
+
+#### Ma base de données "quotes_db.csv"
+Colonnes:
+- `id`
+- `text`
 
 #### Commandes pour lancer le serveur uvicorn
 
