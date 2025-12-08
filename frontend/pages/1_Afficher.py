@@ -19,12 +19,12 @@ if st.button("Charger les données"):
         response = requests.get(API_URL)
 
         if response.status_code == 200:
-            result = response.json()['input']
+            result = response.json()
 
             df = pd.DataFrame(result)
             st.dataframe(df, width="stretch")
 
-            st.success(f"Citation ajoutée ! ID: {result['id']}")
+            st.success("Lecture de toutes les citations")
             st.balloons()
         else:
             st.error(f"Erreur de l'API avec le code {response.status_code}")

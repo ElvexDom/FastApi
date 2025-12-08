@@ -57,7 +57,7 @@ def insert_quote(quote : QuoteRequest):
 @app.get("/read/", response_model=List[QuoteResponse])
 def read_all_quotes():
     df = read_db()
-    return df.to_json()
+    return df.reset_index().rename(columns={'id':'id','text':'text'}).to_dict('records')
 
 
 
