@@ -1,14 +1,10 @@
 # backend/main.py
 from fastapi import FastAPI, HTTPException
-import uvicorn
-import os 
 import pandas as pd
-from dotenv import load_dotenv 
-from pydantic import BaseModel, Field, field_validator, model_validator
-from modules.db_tools import read_db, write_db, initialize_db
+from pydantic import BaseModel, model_validator
+from backend.modules.db_tools import read_db, write_db, initialize_db
 from typing import List
 import random
-load_dotenv()
 
 # modèles pydantic
 class QuoteRequest(BaseModel):
@@ -32,6 +28,7 @@ initialize_db()
 
 # --- Configuration ---
 app = FastAPI(title="API")
+feelApp = FastAPI(title="Feel API")
 
 @app.get("/")
 def read_root():
@@ -107,23 +104,3 @@ def read_all_id():
     ids = df.index.to_frame(name='id').to_dict(orient='records')
     
     return ids
-
-if __name__ == "__main__":
-    # 1 - on récupère le port de l'API
-    try:
-        print("Hello")
-        port = os.getenv('FAST_API_PORT')
-        url = os.getenv('API_BASE_URL')
-        port = int(port)
-        print(port)
-    except ValueError:
-        print("ERREUR")
-        port = 8080
-
-    # 2 - On lance uvicorn
-    uvicorn.run(
-        "main:app", 
-        host = url,
-        port = port, 
-        reload = True
-    )
