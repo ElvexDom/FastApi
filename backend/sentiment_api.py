@@ -29,6 +29,10 @@ class Texte(BaseModel):
 # --- Configuration ---
 feelApp = FastAPI(title="Feel API")
 
+@feelApp.get("/")
+def read_root():
+    return {"Hello": "World", "status": "API is running"}
+
 @feelApp.post("/analyse_sentiment/")
 async def analyse_sentiment(texte_object: Texte):
     logger.info(f"Analyse du texte: {texte_object.texte}")

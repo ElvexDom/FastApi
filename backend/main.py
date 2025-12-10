@@ -28,7 +28,6 @@ initialize_db()
 
 # --- Configuration ---
 app = FastAPI(title="API")
-feelApp = FastAPI(title="Feel API")
 
 @app.get("/")
 def read_root():
