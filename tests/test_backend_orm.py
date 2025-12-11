@@ -51,7 +51,7 @@ def override_session(monkeypatch, db_session):
             return db_session
 
         def __exit__(self, exc_type, exc_val, exc_tb):
-            pass  # Pas besoin de close/rollback, géré par le fixture
+            pass
 
     monkeypatch.setattr(db_tools, "Session", SessionMock)
 

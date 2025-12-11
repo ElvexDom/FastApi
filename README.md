@@ -1,42 +1,59 @@
 #### Installation des bibliothèques
-`pip install fastapi uvicorn`
 
-Un mini programme complet:
-* **frontend** (streamlit)
+```bash
+pip install fastapi uvicorn streamlit pandas requests
+```
+
+#### Un mini programme complet
+
+* **frontend** (Streamlit)
+
   * **pages**
-* **backend**:
+
+* **backend** :
+
   * **modules** (contenir nos propres modules)
-  * **data** (nos csv)
+  * **data** (nos CSV et la base SQLite `quotes_db.db`)
 
-#### Architecture
-```
-mon_projet/
-├── backend
-│   ├── modules
-│   │   └── df_tools.py
-│   ├── data
-│   │   └── quotes_db.csv
-│   └── main.py
-├── frontend
-│   ├── app.py
-│   └── pages
-│       ├──
-│       └── 
-├── README.md
-├── .venv
-└── .gitignore
+#### Ma base de données "quotes_db.csv" et "quotes_db.db"
+
+Colonnes :
+
+* `id`
+* `text`
+
+> Il est également possible de consulter le fichier `diary/note.md` pour des notes complémentaires.
+
+#### Commandes pour lancer le serveur FastAPI avec uvicorn
+
+```bash
+uvicorn backend.main:app --reload --log-level debug
 ```
 
-#### Ma base de données "quotes_db.csv"
-Colonnes:
-- `id`
-- `text`
+#### Commandes pour le terminal pour faire un GET
 
-#### Commandes pour lancer le serveur uvicorn
+* **Powershell** :
 
-`uvicorn chemin.nom:app --reload --log-level debug`
+```powershell
+Invoke-WebRequest -Method GET "http://127.0.0.1:8000/citation"
+```
 
-#### Commandes pour le terminale pour faire un GET
-- `Powershell` : `Invoke-WebRequest -Method GET "http://127.0.0.1:8000/citation"`
+* **Mac / Linux** :
 
-- `MAC Linux` : `CURL -X GET "http://127.0.0.1:8000/citation"`
+```bash
+curl -X GET "http://127.0.0.1:8000/citation"
+```
+
+#### Commandes pour lancer le frontend Streamlit
+
+```bash
+streamlit run frontend/app.py
+```
+
+#### Commandes pour lancer mes API Python avec `launcher.py`
+
+```bash
+python launcher.py
+```
+
+> Le `launcher.py` contient la logique pour lancer les 2 API (FastAPI backend et API sentiment) sur des ports distincts.
